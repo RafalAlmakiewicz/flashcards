@@ -51,6 +51,21 @@ export const shuffle = (dispatch, getState) => {
   }
   dispatch(setNotTried(arr));
 };
+
+export const selectDecks = (state) => state.decks.decks;
+
+export const selectDeckIds = (state) =>
+  selectDecks(state) ? Object.keys(selectDecks(state)) : undefined;
+
+export const selectDeckById = (id) => (state) => selectDecks(state)?.[id];
+
+export const selectCurrentDeck = (state) =>
+  selectDecks(state)?.[state.decks.current];
+
+export const selectRound = (state) => selectCurrentDeck(state)?.progress.round;
+
+export const selectNextCardId = (state) => selectRound(state)?.notTried[0];
+
 export const { setCurrent, nextCard, nextRound, resetProgress, setNotTried } =
   decksSlice.actions;
 export default decksSlice.reducer;

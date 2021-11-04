@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import fetchData from "./fetchData";
+import { selectNextCardId } from "./decksSlice";
 
 const cardsSlice = createSlice({
   name: "cards",
@@ -11,5 +12,7 @@ const cardsSlice = createSlice({
     });
   },
 });
+
+export const selectNextCard = (state) => state.cards?.[selectNextCardId(state)];
 
 export default cardsSlice.reducer;
