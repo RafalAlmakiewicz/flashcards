@@ -1,14 +1,22 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import fetchData from "../app/fetchData";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectDeckIds } from "../app/decksSlice";
+import { DeckSummary } from "./deckSummary";
 
 export const DecksList = () => {
-  const dispatch = useDispatch();
+  const deckIds = useSelector(selectDeckIds);
 
-  useEffect(() => {
-    dispatch(fetchData());
-    console.log("fetching data");
-  }, []);
-
-  return <div></div>;
+  return (
+    <React.Fragment>
+      {deckIds ? (
+        <div>
+          {deckIds.map((id) => (
+            <DeckSummary key={id} id={id} />
+          ))}
+        </div>
+      ) : (
+        <span>Loading...</span>
+      )}
+    </React.Fragment>
+  );
 };
