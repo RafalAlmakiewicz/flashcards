@@ -3,40 +3,37 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const fetchData = createAsyncThunk("fetchData", async () => {
   const response = await fetch("http://localhost:3000/flashcards/api/decks");
   const data = await response.json();
-  console.log(data);
   return composeData(data);
 });
 
 const composeData = (data) => {
   let entities = {
     decks: {},
-    progress: {},
     cards: {},
   };
 
   for (let deck of data) {
-    let cardIds = [];
     for (let card of deck.cards) {
       entities.cards[card._id] = card;
-      cardIds.push(card._id);
     }
 
-    entities.progress[deck._id] = initialProgress(cardIds);
+    let cardIds = deck.cards.map((card) => card._id);
 
     entities.decks[deck._id] = {
       ...deck,
-      cards: deck.cards.map((card) => card._id),
+      progress: initialProgress(cardIds),
+      cards: cardIds,
     };
   }
 
   return entities;
 };
 
-const initialProgress = (allCardsIds) => {
+export const initialProgress = (cardIds) => {
   return {
     round: {
-      number: 0,
-      notTried: allCardsIds,
+      number: 1,
+      notTried: cardIds,
       failed: [],
       learned: [],
     },

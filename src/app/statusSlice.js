@@ -3,7 +3,7 @@ import fetchData from "./fetchData";
 
 const statusSlice = createSlice({
   name: "status",
-  initialState: { fetchData: "idle" },
+  initialState: { fetchData: "" },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -11,7 +11,7 @@ const statusSlice = createSlice({
         state.fetchData = "loading";
       })
       .addCase(fetchData.fulfilled, (state) => {
-        state.fetchData = "idle";
+        state.fetchData = "loaded";
       })
       .addCase(fetchData.rejected, (state) => {
         state.fetchData = "server error";

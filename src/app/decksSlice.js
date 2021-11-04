@@ -3,11 +3,10 @@ import fetchData from "./fetchData";
 
 const decksSlice = createSlice({
   name: "decks",
-  initialState: {},
-  reducers: {},
+  initialState: { decks: null, current: "" },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
-      return action.payload.decks;
+      state.decks = action.payload.decks;
     });
   },
 });
