@@ -1,9 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchData from "./fetchData";
+import fetchData, { initialProgress } from "./fetchData";
 
 const decksSlice = createSlice({
   name: "decks",
   initialState: { decks: null, current: "" },
+  reducers: {
+    setCurrent: (state, action) => {
+      state.current = action.payload;
+    },
+    nextCard: ({ decks, current }, action) => {
+      const { round } = decks[current].progress;
+      const lastCard = round.notTried.shift();
+      if (action.payload) round.learned.push(lastCard);
+      else round.failed.push(lastCard);
+    },
+    nextRound: ({ decks, current }) => {
+      const { round, learned } = decks[current].progress;
+      learned.push(round.learned);
+      round.learned = [];
+      round.notTried = round.failed;
+      round.failed = [];
+      round.number += 1;
+    },
+    resetProgress: ({ decks, current }) => {
+      const cardIds = [...decks[current].cards];
+      decks[current].progress = initialProgress(cardIds);
+    },
+    setNotTried: ({ decks, current }, action) => {
+      decks[current].progress.round.notTried = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
       state.decks = action.payload.decks;
@@ -11,4 +37,20 @@ const decksSlice = createSlice({
   },
 });
 
+export const shuffle = (dispatch, getState) => {
+  const { decks, current } = getState().decks;
+  const arr = [...decks[current].progress.round.notTried];
+  let temp,
+    i,
+    n = arr.length;
+  while (n) {
+    i = Math.floor(Math.random() * n--);
+    temp = arr[n];
+    arr[n] = arr[i];
+    arr[i] = temp;
+  }
+  dispatch(setNotTried(arr));
+};
+export const { setCurrent, nextCard, nextRound, resetProgress, setNotTried } =
+  decksSlice.actions;
 export default decksSlice.reducer;
