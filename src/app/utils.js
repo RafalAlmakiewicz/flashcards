@@ -31,3 +31,37 @@ export const initialProgress = (cardIds) => {
     learned: [],
   };
 };
+
+export const toArray = (object) => {
+  let array = [];
+  for (let key in object) {
+    array.push(object[key]);
+  }
+  return array;
+};
+
+const max = 250;
+
+export const validateDeck = ({ name, cards }) => {
+  const errors = [];
+  if (!name.trim()) errors.push("name is required!");
+  else if (name.trim().length > max)
+    errors.push("name must contain less than 250 characters!");
+  for (let id in cards) {
+    errors.push(...validateCard(cards[id]));
+  }
+  return errors.filter(distinct);
+};
+
+export const validateCard = ({ front, back }) => {
+  const errors = [];
+  if (!front.trim() || !back.trim())
+    errors.push("front and back are required!");
+  else if (front.trim().length > max || back.trim().length > max)
+    errors.push("front and back must contain less than 250 characters!");
+  return errors;
+};
+
+export const distinct = (value, index, array) => {
+  return array.indexOf(value) === index;
+};
