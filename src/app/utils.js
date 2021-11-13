@@ -1,12 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-
-const fetchData = createAsyncThunk("fetchData", async () => {
-  const response = await fetch("http://localhost:3000/flashcards/api/decks");
-  const data = await response.json();
-  return composeData(data);
-});
-
-const composeData = (data) => {
+export const composeData = (data) => {
   let entities = {
     decks: {},
     cards: {},
@@ -25,7 +17,6 @@ const composeData = (data) => {
       cards: cardIds,
     };
   }
-
   return entities;
 };
 
@@ -40,5 +31,3 @@ export const initialProgress = (cardIds) => {
     learned: [],
   };
 };
-
-export default fetchData;

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchData, { initialProgress } from "./fetchData";
+import { initialProgress } from "./utils";
+import api from "./api";
 
 const decksSlice = createSlice({
   name: "decks",
@@ -31,9 +32,13 @@ const decksSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchData.fulfilled, (state, action) => {
-      state.decks = action.payload.decks;
-    });
+    builder
+      .addCase(api.getAll.fulfilled, (state, action) => {
+        state.decks = action.payload.decks;
+      })
+      .addCase(api.update.fulfilled, (state, action) => {
+        state.decks = { ...state.decks, ...action.payload.decks };
+      });
   },
 });
 

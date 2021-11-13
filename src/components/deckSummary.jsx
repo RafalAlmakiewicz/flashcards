@@ -20,6 +20,14 @@ export function DeckSummary({ id }) {
       >
         Learn
       </Link>
+      <Link
+        to="/update"
+        onClick={() => {
+          dispatch(setCurrent(deck._id));
+        }}
+      >
+        Update
+      </Link>
     </div>
   );
 }

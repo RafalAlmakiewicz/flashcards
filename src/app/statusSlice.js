@@ -1,20 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchData from "./fetchData";
+import api from "./api";
+const { getAll, update } = api;
 
 const statusSlice = createSlice({
   name: "status",
-  initialState: { fetchData: "" },
+  initialState: { getAll: "", update: "" },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchData.pending, (state) => {
-        state.fetchData = "loading";
+      .addCase(getAll.pending, (state) => {
+        state.getAll = "loading";
       })
-      .addCase(fetchData.fulfilled, (state) => {
-        state.fetchData = "loaded";
+      .addCase(getAll.fulfilled, (state) => {
+        state.getAll = "idle";
       })
-      .addCase(fetchData.rejected, (state) => {
-        state.fetchData = "server error";
+      .addCase(getAll.rejected, (state) => {
+        state.getAll = "server error";
+      })
+      .addCase(update.pending, (state) => {
+        state.update = "loading";
+      })
+      .addCase(update.fulfilled, (state) => {
+        state.update = "idle";
+      })
+      .addCase(update.rejected, (state) => {
+        state.update = "server error";
       });
   },
 });

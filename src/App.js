@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { DecksList } from "./components/decksList";
 import { Switch, Route, Redirect } from "react-router";
 import { Learn } from "./components/learn";
-import fetchData from "./app/fetchData";
+import { getAll } from "./app/api";
 import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(getAll());
   }, []);
 
   return (
