@@ -44,12 +44,16 @@ const max = 250;
 
 export const validateDeck = ({ name, cards }) => {
   const errors = [];
+  console.log("cards", cards, cards.length);
+  if (Object.keys(cards).length < 2)
+    errors.push("deck must contain at least 2 cards.");
   if (!name.trim()) errors.push("name is required!");
   else if (name.trim().length > max)
     errors.push("name must contain less than 250 characters!");
   for (let id in cards) {
     errors.push(...validateCard(cards[id]));
   }
+  console.log(errors.filter(distinct));
   return errors.filter(distinct);
 };
 

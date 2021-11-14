@@ -29,4 +29,16 @@ export const update = createAsyncThunk(
   }
 );
 
-export default { getAll, update };
+export const create = createAsyncThunk("apiCreate", async (deck) => {
+  const response = await fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify(deck),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return composeData([data]);
+});
+
+export default { getAll, update, create };

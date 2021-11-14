@@ -21,6 +21,9 @@ function App() {
       <Route path="/update">
         <DeckForm />
       </Route>
+      <Route path="/new">
+        <DeckForm />
+      </Route>
       <Route path="/decks">
         <DecksList />
       </Route>

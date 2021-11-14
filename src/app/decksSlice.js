@@ -38,6 +38,9 @@ const decksSlice = createSlice({
       })
       .addCase(api.update.fulfilled, (state, action) => {
         state.decks = { ...state.decks, ...action.payload.decks };
+      })
+      .addCase(api.create.fulfilled, (state, action) => {
+        state.decks = { ...state.decks, ...action.payload.decks };
       });
   },
 });
