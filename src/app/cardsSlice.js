@@ -18,6 +18,9 @@ const cardsSlice = createSlice({
       })
       .addCase(api.create.fulfilled, (state, { payload }) => {
         return { ...state, ...payload.cards };
+      })
+      .addCase(api.remove.fulfilled, (state, { payload }) => {
+        for (let cardId of payload.cards) delete state[cardId];
       });
   },
 });

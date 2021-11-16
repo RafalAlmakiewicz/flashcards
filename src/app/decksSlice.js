@@ -41,6 +41,9 @@ const decksSlice = createSlice({
       })
       .addCase(api.create.fulfilled, (state, action) => {
         state.decks = { ...state.decks, ...action.payload.decks };
+      })
+      .addCase(api.remove.fulfilled, (state, action) => {
+        delete state.decks[action.payload._id];
       });
   },
 });

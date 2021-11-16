@@ -5,6 +5,8 @@ const endpoint = "http://localhost:3000/flashcards/api/decks";
 
 export const getAll = createAsyncThunk("apiGetAll", async () => {
   const response = await fetch(endpoint);
+  if (!response.ok)
+    return Promise.reject(`error ${response.status} ${response.statusText}`);
   const data = await response.json();
   return composeData(data);
 });
@@ -21,6 +23,8 @@ export const update = createAsyncThunk(
         "Content-Type": "application/json",
       },
     });
+    if (!response.ok)
+      return Promise.reject(`error ${response.status} ${response.statusText}`);
     const data = await response.json();
     return {
       ...composeData([data]),
@@ -37,8 +41,20 @@ export const create = createAsyncThunk("apiCreate", async (deck) => {
       "Content-Type": "application/json",
     },
   });
+  if (!response.ok)
+    return Promise.reject(`error ${response.status} ${response.statusText}`);
   const data = await response.json();
   return composeData([data]);
 });
 
-export default { getAll, update, create };
+export const remove = createAsyncThunk("apiRemove", async (deck) => {
+  const response = await fetch(`${endpoint}/${deck._id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok)
+    return Promise.reject(`error ${response.status} ${response.statusText}`);
+  return deck;
+});
+
+export default { getAll, update, create, remove };
