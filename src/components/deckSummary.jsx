@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrent, selectDeckById } from "../app/decksSlice";
 import { Link } from "react-router-dom";
+import { DeleteDeckPopUp } from "./deleteDeckPopUp";
 
 export function DeckSummary({ id }) {
   const dispatch = useDispatch();
   const deck = useSelector(selectDeckById(id));
+  const [showPopUp, setShowPopUp] = useState(false);
 
   return (
     <div>
@@ -28,6 +30,16 @@ export function DeckSummary({ id }) {
       >
         Update
       </Link>
+      <button
+        onClick={() => {
+          setShowPopUp(true);
+        }}
+      >
+        Delete
+      </button>
+      {showPopUp ? (
+        <DeleteDeckPopUp deck={deck} setShowPopUp={setShowPopUp} />
+      ) : null}
     </div>
   );
 }
