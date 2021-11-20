@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectDeckIds } from "../app/decksSlice";
-import { DeckSummary } from "./deckSummary";
+import { Deck } from "./deck";
 import { setCurrent } from "../app/decksSlice";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export const DecksList = () => {
       {deckIds ? (
         <div>
           {deckIds.map((id) => (
-            <DeckSummary key={id} id={id} />
+            <Deck key={id} id={id} />
           ))}
         </div>
       ) : (

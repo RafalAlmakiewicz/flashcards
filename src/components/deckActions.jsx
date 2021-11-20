@@ -4,16 +4,13 @@ import { setCurrent, selectDeckById } from "../app/decksSlice";
 import { Link } from "react-router-dom";
 import { DeleteDeckPopUp } from "./deleteDeckPopUp";
 
-export function DeckSummary({ id }) {
+export function DeckActions({ id }) {
   const dispatch = useDispatch();
   const deck = useSelector(selectDeckById(id));
   const [showPopUp, setShowPopUp] = useState(false);
 
   return (
-    <div>
-      <p>{deck.name}</p>
-      <p>{deck.cards.length}</p>
-      <p>{deck.progress.learned.length + deck.progress.round.learned.length}</p>
+    <React.Fragment>
       <Link
         to="/learn"
         onClick={() => {
@@ -40,6 +37,6 @@ export function DeckSummary({ id }) {
       {showPopUp ? (
         <DeleteDeckPopUp deck={deck} setShowPopUp={setShowPopUp} />
       ) : null}
-    </div>
+    </React.Fragment>
   );
 }
