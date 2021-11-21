@@ -8,6 +8,7 @@ export function Deck({ id }) {
 
   return (
     <div
+      data-testid={id}
       className={styles.deck}
       onMouseEnter={() => setShowInfo(false)}
       onMouseLeave={() => setShowInfo(true)}

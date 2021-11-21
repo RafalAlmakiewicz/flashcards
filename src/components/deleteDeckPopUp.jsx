@@ -16,7 +16,7 @@ export function DeleteDeckPopUp({ deck, setShowPopUp }) {
             setShowPopUp(false);
           }}
         >
-          delete
+          ok
         </button>
         <button
           onClick={() => {
