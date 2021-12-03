@@ -1,0 +1,64 @@
+.btn {
+  @include shadow-rounded-border;
+  border-radius: 1.6rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Roboto Mono", Courier, monospace;
+  font-size: 1.6rem;
+  font-weight: 600;
+  height: 3rem;
+  letter-spacing: 1px;
+  padding: 0 2rem;
+  white-space: nowrap;
+
+  &-light {
+    background: white;
+    color: $c-body;
+
+    &:hover {
+      background: $c-primary;
+    }
+  }
+
+  &-primary {
+    background: $c-primary;
+
+    &:hover {
+      background: $c-secondary;
+    }
+  }
+
+  &-secondary {
+    background: $c-secondary;
+
+    &:hover {
+      background: darken($c-secondary, 5%);
+    }
+  }
+
+  &-success {
+    background: $c-success;
+
+    &:hover {
+      background: darken($c-success, 10%);
+    }
+  }
+
+  &-danger {
+    background: $c-danger;
+
+    &:hover {
+      background: darken($c-danger, 10%);
+    }
+  }
+
+  &-square {
+    border-radius: 30%;
+    box-shadow: none;
+    height: 3.6rem;
+    padding: 0;
+    width: 3.6rem;
+  }
+}

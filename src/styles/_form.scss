@@ -1,0 +1,58 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 2rem 3rem 6rem;
+  max-width: 64rem;
+
+  @media (max-width: $small) {
+    align-content: center;
+    margin: 3rem;
+  }
+
+  &-errors {
+    color: $c-danger;
+    margin-left: 6rem;
+  }
+
+  &-name {
+    border-bottom: $border;
+    margin-bottom: 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  &-card {
+    align-items: center;
+    display: flex;
+    margin: 0.5rem 0;
+
+    @media (max-width: $small) {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      margin: 1.5rem 0;
+      row-gap: 1rem;
+
+      button {
+        align-self: center;
+        grid-column: 2;
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+
+  &-new-card {
+    border-bottom: $border;
+    border-top: $border;
+    margin: 1rem 0 2.5rem 0;
+    padding: 1.5rem 0;
+  }
+
+  &-submit {
+    box-shadow: none;
+    width: 24rem;
+  }
+
+  input {
+    margin-right: 3.2rem;
+    width: 24rem;
+  }
+}
