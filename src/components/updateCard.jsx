@@ -1,8 +1,9 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function UpdateCard({ card, handleChange, handleDelete }) {
   return (
-    <React.Fragment>
+    <div className="form-card">
       <input
         type="text"
         value={card.front}
@@ -13,7 +14,12 @@ export function UpdateCard({ card, handleChange, handleDelete }) {
         value={card.back}
         onChange={(e) => handleChange({ ...card, back: e.target.value })}
       />
-      <button onClick={() => handleDelete(card._id)}>Delete</button>
-    </React.Fragment>
+      <button
+        className="btn btn-primary btn-square"
+        onClick={() => handleDelete(card._id)}
+      >
+        <FontAwesomeIcon icon="trash-alt" />
+      </button>
+    </div>
   );
 }

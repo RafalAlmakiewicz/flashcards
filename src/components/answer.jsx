@@ -6,6 +6,7 @@ export const Answer = ({ seeAnswer, setSeeAnswer, next }) => {
       {seeAnswer ? (
         <div>
           <button
+            className="btn btn-success"
             onClick={() => {
               next(true);
             }}
@@ -13,6 +14,7 @@ export const Answer = ({ seeAnswer, setSeeAnswer, next }) => {
             I was right
           </button>
           <button
+            className="btn btn-danger"
             onClick={() => {
               next(false);
             }}
@@ -22,6 +24,7 @@ export const Answer = ({ seeAnswer, setSeeAnswer, next }) => {
         </div>
       ) : (
         <button
+          className="btn btn-primary"
           onClick={() => {
             setSeeAnswer(true);
           }}

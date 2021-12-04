@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentDeck } from "../app/decksSlice";
-import { Link } from "react-router-dom";
 import { selectCardsByIds } from "../app/cardsSlice";
 import { NewCard } from "./newCard";
 import { UpdateCard } from "./updateCard";
@@ -63,37 +62,43 @@ export function DeckForm() {
   };
 
   return (
-    <React.Fragment>
+    <div className="form-container">
       {errors.length > 0 && (
-        <div>
+        <div className="form-errors">
           {errors.map((error) => (
             <p key={uniqueId()}>{error}</p>
           ))}
         </div>
       )}
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <br />
-      {toArray(cards).map((card) => (
-        <UpdateCard
-          key={card._id}
-          card={card}
-          handleChange={handleChange}
-          handleDelete={handleDelete}
-        />
-      ))}
+      <div className="form">
+        <div className="form-name">
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </div>
 
-      <NewCard
-        card={newCard}
-        handleAdd={handleAdd}
-        handleChange={handleChange}
-      />
-      <button onClick={handleSubmit}>Submit</button>
-    </React.Fragment>
+        {toArray(cards).map((card) => (
+          <UpdateCard
+            key={card._id}
+            card={card}
+            handleChange={handleChange}
+            handleDelete={handleDelete}
+          />
+        ))}
+
+        <NewCard
+          card={newCard}
+          handleAdd={handleAdd}
+          handleChange={handleChange}
+        />
+        <button className="btn btn-primary form-submit" onClick={handleSubmit}>
+          submit
+        </button>
+      </div>
+    </div>
   );
 }

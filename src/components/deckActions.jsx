@@ -10,33 +10,36 @@ export function DeckActions({ id }) {
   const [showPopUp, setShowPopUp] = useState(false);
 
   return (
-    <React.Fragment>
+    <div className="deck-actions">
       <Link
+        className="btn btn-light"
         to="/learn"
         onClick={() => {
           dispatch(setCurrent(deck._id));
         }}
       >
-        Learn
+        learn
       </Link>
       <Link
+        className="btn btn-light"
         to="/update"
         onClick={() => {
           dispatch(setCurrent(deck._id));
         }}
       >
-        Update
+        update
       </Link>
       <button
+        className="btn btn-light"
         onClick={() => {
           setShowPopUp(true);
         }}
       >
-        Delete
+        delete
       </button>
       {showPopUp ? (
         <DeleteDeckPopUp deck={deck} setShowPopUp={setShowPopUp} />
       ) : null}
-    </React.Fragment>
+    </div>
   );
 }

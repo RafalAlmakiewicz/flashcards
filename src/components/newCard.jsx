@@ -1,8 +1,9 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function NewCard({ card, handleAdd, handleChange }) {
   return (
-    <React.Fragment>
+    <div className="form-card form-new-card">
       <input
         type="text"
         value={card.front}
@@ -15,7 +16,9 @@ export function NewCard({ card, handleAdd, handleChange }) {
         placeholder="back"
         onChange={(e) => handleChange({ ...card, back: e.target.value })}
       />
-      <button onClick={handleAdd}>Add</button>
-    </React.Fragment>
+      <button className="btn btn-primary btn-square" onClick={handleAdd}>
+        <FontAwesomeIcon icon="plus" />
+      </button>
+    </div>
   );
 }

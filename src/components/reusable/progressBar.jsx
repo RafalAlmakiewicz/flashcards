@@ -2,9 +2,11 @@ import React from "react";
 
 export const ProgressBar = ({ value, max }) => {
   return (
-    <label>
-      {value}/{max}
+    <React.Fragment>
+      <p className="score">
+        {value}/{max}
+      </p>
       <progress value={value} max={max}></progress>
-    </label>
+    </React.Fragment>
   );
 };

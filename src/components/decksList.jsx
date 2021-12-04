@@ -13,22 +13,27 @@ export const DecksList = () => {
   return (
     <React.Fragment>
       {deckIds ? (
-        <div>
-          {deckIds.map((id) => (
-            <Deck key={id} id={id} />
-          ))}
+        <div className="main-container">
+          <div className="actions-container">
+            <Link
+              className="btn btn-primary"
+              to="/new"
+              onClick={() => {
+                dispatch(setCurrent(""));
+              }}
+            >
+              new deck
+            </Link>
+          </div>
+          <div className="decks-container">
+            {deckIds.map((id) => (
+              <Deck key={id} id={id} />
+            ))}
+          </div>
         </div>
       ) : (
-        <span>Loading...</span>
+        <p>Loading...</p>
       )}
-      <Link
-        to="/new"
-        onClick={() => {
-          dispatch(setCurrent(""));
-        }}
-      >
-        New Deck
-      </Link>
     </React.Fragment>
   );
 };
