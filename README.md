@@ -1,44 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Flashcards
 
-## Available Scripts
+Application for creating thematic flashcard decks. Developed with `React`, `Redux` and `Sass`. Tested using `Jest` and `React Testing Library`. Backend services can be found in a separate repository – [Flashcards-api](https://github.com/RafalAlmakiewicz/flashcards-api).
 
-In the project directory, you can run:
+## Goals
 
-### `npm start`
+- getting familiar with Redux
+  - handling fetch requests with [async thunks](https://github.com/RafalAlmakiewicz/flashcards/blob/master/src/app/api.js)
+  - creating [redux slices](https://github.com/RafalAlmakiewicz/flashcards/tree/master/src/app)
+- practice creating responsive layouts using grid, flexbox and media queries
+- getting familiar with [Sass](https://github.com/RafalAlmakiewicz/flashcards/tree/master/src/styles)
+- practice writing [tests](https://github.com/RafalAlmakiewicz/flashcards/tree/master/src/components/tests) using Jest and React Testing Library
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Home page
 
-### `npm test`
+List of all decks, each with a progress bar.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![main](https://user-images.githubusercontent.com/79459373/144730499-990b2f44-8c3a-438b-8183-c4a5bf8e9f92.png)
 
-### `npm run build`
+![main_small](https://user-images.githubusercontent.com/79459373/144730548-edbcc58a-1476-4802-89aa-e4761ca48280.png)
+![main_popup](https://user-images.githubusercontent.com/79459373/144730546-606024b8-d7d6-4641-8dea-ba700350f402.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Form
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Update or create deck. If any field is currently empty, or deck contains less than 2 cards, error message is displayed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![form](https://user-images.githubusercontent.com/79459373/144730780-12392bec-058f-4ccd-b603-c3a71ce3377f.png)
+![form_small](https://user-images.githubusercontent.com/79459373/144730781-5375b983-e827-4f00-8ad3-bd2d16bc7a44.png)
 
-### `npm run eject`
+### Learn
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Study selected deck. Buttons on the top are used to flip current card, shuffle remaining cards and reset progress back to 0. After each round, percent result is displayed. All words which user could not remember are going to reappear in the next round.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![learn](https://user-images.githubusercontent.com/79459373/144730785-d0e50eef-86f8-480b-9717-ac2adcfcc909.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Potential Improvements
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- progress bars are not styled properly in Firefox
+- add notifications displayed when deck is updated or created
+- for the sake of simplicity, user accounts are not implemented. Storing each user decks nad study progress separately would make application more practical.
