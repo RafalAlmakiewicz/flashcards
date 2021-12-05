@@ -7,8 +7,10 @@ import { UpdateCard } from "./updateCard";
 import api from "../app/api";
 import { uniqueId } from "lodash";
 import { validateCard, validateDeck, toArray, distinct } from "../app/utils";
+import { useHistory } from "react-router";
 
 export function DeckForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const deck = useSelector(selectCurrentDeck);
   const currentCards = useSelector(selectCardsByIds(deck ? deck.cards : []));
@@ -59,6 +61,7 @@ export function DeckForm() {
     };
     if (deck) dispatch(api.update(payload));
     else dispatch(api.create(payload));
+    history.push("/");
   };
 
   return (

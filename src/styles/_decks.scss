@@ -16,6 +16,10 @@
 
   @media (max-width: $small) {
     justify-content: center;
+
+    a {
+      margin: auto;
+    }
   }
 }
 
@@ -75,12 +79,14 @@
   display: flex;
   inset: 0;
   position: fixed;
+  z-index: 1;
 }
 
 .delete-pop-up {
   @include shadow-rounded-border;
   background: white;
   display: grid;
+
   margin: auto;
   max-width: 70rem;
   padding: 2rem;
