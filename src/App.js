@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { DecksList } from "./components/decksList";
 import { Switch, Route, Redirect } from "react-router";
 import { Learn } from "./components/learn";
-import { getAll } from "./app/api";
+import { getAll } from "./state/thunks";
 import { useDispatch } from "react-redux";
 import { DeckForm } from "./components/deckForm";
 import { Header } from "./components/header";
