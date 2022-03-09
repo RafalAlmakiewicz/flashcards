@@ -141,3 +141,13 @@ header {
     letter-spacing: 3px;
   }
 }
+
+.fetch-loading,
+.fetch-error {
+  font-size: 3rem;
+  text-align: center;
+  margin: 6rem 0;
+}
+.fetch-error {
+  color: $c-danger;
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { StatusState } from "../types/statusTypes";
+import { RootState } from "./store";
 import { getAll, update, create, remove } from "./thunks";
 
 const initialState: StatusState = {
@@ -55,3 +56,5 @@ const statusSlice = createSlice({
 });
 
 export default statusSlice.reducer;
+
+export const selectGetAllStatus = (state: RootState) => state.status.getAll;
